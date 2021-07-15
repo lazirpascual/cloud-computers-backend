@@ -91,6 +91,26 @@ app.delete("/api/cartitems/:id", (request, response) => {
     .catch((error) => next(error));
 });
 
+app.put("/api/cartitems/:id", (request, response, next) => {
+  const body = request.body;
+
+  const cartItem = {
+    name: body.name,
+    price: body.price,
+    quantity: body.quantity,
+    category: body.category,
+    imgPath: body.imgPath,
+    imgPreview: body.imgPreview,
+    productPreview: body.productPreview,
+  };
+
+  CartItem.findByIdAndUpdate(request.params.id, cartItem, { new: true })
+    .then((updatedItem) => {
+      response.json(updatedItem);
+    })
+    .catch((error) => next(error));
+});
+
 const unknownEndpoint = (request, response) => {
   response.status(404).send({ error: "unknown endpoint" });
 };

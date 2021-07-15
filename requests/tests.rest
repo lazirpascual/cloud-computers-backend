@@ -21,4 +21,18 @@ GET http://localhost:3001/api/products/60ef5ae3254d9a2b86750a09
 ###
 DELETE http://localhost:3001/api/cartitems/60ef9852438bd30015e74469
 
+###
+PUT http://localhost:3001/api/cartitems/60efa1abe86708001554679f
+Content-Type: application/json
+
+{
+    "name": "Fractal Design Meshify C",
+    "price": 95.99,
+    "quantity": 3,
+    "category": "Case",
+    "imgPath": "https://i.imgur.com/b3ieUZw.jpg",
+    "imgPreview": "https://i.imgur.com/iOrrWY6.jpg",
+    "productPreview": "https://i.imgur.com/x4CmFCt.png"
+}
+
 
