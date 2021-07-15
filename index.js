@@ -5,6 +5,7 @@ const morgan = require("morgan");
 require("dotenv").config();
 const { Product, CartItem } = require("./models/model");
 
+app.use(express.static("build"));
 app.use(cors());
 app.use(express.json());
 
