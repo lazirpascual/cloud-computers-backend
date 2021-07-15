@@ -32,10 +32,34 @@ app.get("/api/products", (request, response) => {
   });
 });
 
+app.get("/api/products/:id", (request, response, next) => {
+  Product.findById(request.params.id)
+    .then((product) => {
+      if (product) {
+        response.json(product);
+      } else {
+        response.status(404).end();
+      }
+    })
+    .catch((error) => next(error));
+});
+
 app.get("/api/cartitems", (request, response) => {
   CartItem.find({}).then((products) => {
     response.json(products);
   });
+});
+
+app.get("/api/cartitems/:id", (request, response, next) => {
+  CartItem.findById(request.params.id)
+    .then((item) => {
+      if (item) {
+        response.json(item);
+      } else {
+        response.status(404).end();
+      }
+    })
+    .catch((error) => next(error));
 });
 
 app.post("/api/cartitems", (request, response, next) => {
@@ -55,6 +79,14 @@ app.post("/api/cartitems", (request, response, next) => {
     .save()
     .then((savedItem) => {
       response.json(savedItem.toJSON());
+    })
+    .catch((error) => next(error));
+});
+
+app.delete("/api/cartitems/:id", (request, response) => {
+  CartItem.findByIdAndRemove(request.params.id)
+    .then((result) => {
+      response.status(204).end();
     })
     .catch((error) => next(error));
 });

@@ -11,3 +11,14 @@ Content-Type: application/json
       "productPreview": "https://i.imgur.com/x4CmFCt.png",
       "id": 13
 }
+
+###
+GET http://localhost:3001/api/cartitems/60ef803872289c58f2bf9cb2
+
+###
+GET http://localhost:3001/api/products/60ef5ae3254d9a2b86750a09
+
+###
+DELETE http://localhost:3001/api/cartitems/60ef9852438bd30015e74469
+
+
