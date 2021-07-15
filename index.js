@@ -38,6 +38,26 @@ app.get("/api/cartitems", (request, response) => {
   });
 });
 
+app.post("/api/cartitems", (request, response, next) => {
+  const body = request.body;
+
+  const cartItem = new CartItem({
+    name: body.name,
+    price: body.price,
+    category: body.category,
+    imgPath: body.imgPath,
+    imgPreview: body.imgPreview,
+    productPreview: body.productPreview,
+  });
+
+  cartItem
+    .save()
+    .then((savedItem) => {
+      response.json(savedItem.toJSON());
+    })
+    .catch((error) => next(error));
+});
+
 const unknownEndpoint = (request, response) => {
   response.status(404).send({ error: "unknown endpoint" });
 };

@@ -1,0 +1,13 @@
+POST http://localhost:3001/api/cartitems
+Content-Type: application/json
+
+{
+    "name": "Fractal Design Meshify C",
+      "price": 95.99,
+      "quantity": 1,
+      "category": "Case",
+      "imgPath": "https://i.imgur.com/b3ieUZw.jpg",
+      "imgPreview": "https://i.imgur.com/iOrrWY6.jpg",
+      "productPreview": "https://i.imgur.com/x4CmFCt.png",
+      "id": 13
+}
