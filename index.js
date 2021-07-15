@@ -44,6 +44,7 @@ app.post("/api/cartitems", (request, response, next) => {
   const cartItem = new CartItem({
     name: body.name,
     price: body.price,
+    quantity: body.quantity,
     category: body.category,
     imgPath: body.imgPath,
     imgPreview: body.imgPreview,
