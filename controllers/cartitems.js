@@ -20,24 +20,11 @@ cartItemsRouter.get("/:id", (request, response, next) => {
 });
 
 cartItemsRouter.post("/", (request, response, next) => {
-  const body = request.body;
+  const cartItem = new CartItem(request.body);
 
-  const cartItem = new CartItem({
-    name: body.name,
-    price: body.price,
-    quantity: body.quantity,
-    category: body.category,
-    imgPath: body.imgPath,
-    imgPreview: body.imgPreview,
-    productPreview: body.productPreview,
+  cartItem.save().then((result) => {
+    response.status(201).json(result);
   });
-
-  cartItem
-    .save()
-    .then((savedItem) => {
-      response.json(savedItem.toJSON());
-    })
-    .catch((error) => next(error));
 });
 
 cartItemsRouter.delete("/:id", (request, response) => {
