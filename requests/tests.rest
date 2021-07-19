@@ -1,3 +1,9 @@
+GET http://localhost:3001/api/products/
+
+###
+GET http://localhost:3001/api/cartitems/
+
+###
 GET http://localhost:3001/api/cartitems/60ef803872289c58f2bf9cb2
 
 ###
