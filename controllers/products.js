@@ -1,22 +1,19 @@
 const productsRouter = require("express").Router();
 const Product = require("../models/product");
 
-productsRouter.get("/", (request, response) => {
-  Product.find({}).then((products) => {
-    response.json(products);
-  });
+productsRouter.get("/", async (request, response) => {
+  const products = await Product.find({});
+  response.json(products);
 });
 
-productsRouter.get("/:id", (request, response, next) => {
-  Product.findById(request.params.id)
-    .then((product) => {
-      if (product) {
-        response.json(product);
-      } else {
-        response.status(404).end();
-      }
-    })
-    .catch((error) => next(error));
+productsRouter.get("/:id", async (request, response) => {
+  const product = await Product.findById(request.params.id);
+
+  if (product) {
+    response.json(product);
+  } else {
+    response.status(404).end();
+  }
 });
 
 module.exports = productsRouter;
