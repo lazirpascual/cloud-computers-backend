@@ -21,7 +21,6 @@ Content-Type: application/json
       "imgPath": "https://i.imgur.com/b3ieUZw.jpg",
       "imgPreview": "https://i.imgur.com/iOrrWY6.jpg",
       "productPreview": "https://i.imgur.com/x4CmFCt.png",
-      "id": 13
 }
 
 ###
