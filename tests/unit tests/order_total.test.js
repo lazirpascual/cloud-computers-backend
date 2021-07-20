@@ -1,4 +1,4 @@
-const testHelper = require("../utils/for_testing");
+const testHelper = require("../../utils/for_testing");
 
 describe("order total", () => {
   const emptyList = [];

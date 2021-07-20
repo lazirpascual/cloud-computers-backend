@@ -1,6 +1,7 @@
-const testHelper = require("../utils/for_testing");
+const testHelper = require("../../utils/for_testing");
 
-describe("subtotal", () => {
+describe("total quantity", () => {
+  const emptyList = [];
   const productList = [
     {
       name: "Fractal Design Meshify C",
@@ -31,18 +32,13 @@ describe("subtotal", () => {
     },
   ];
 
-  test("of a product with price of 95.99 and quantity of 3", () => {
-    const result = testHelper.subtotal(productList[0]);
-    expect(result).toBe(287.97);
+  test("of an emptyList", () => {
+    const result = testHelper.totalQuantity(emptyList);
+    expect(result).toBe(0);
   });
 
-  test("of a product with price of 499.99 and quantity of 4", () => {
-    const result = testHelper.subtotal(productList[1]);
-    expect(result).toBe(1999.96);
-  });
-
-  test("of a product with price of 112.93 and quantity of 6", () => {
-    const result = testHelper.subtotal(productList[2]);
-    expect(result).toBe(677.58);
+  test("of a list with 13 items", () => {
+    const result = testHelper.totalQuantity(productList);
+    expect(result).toBe(13);
   });
 });
