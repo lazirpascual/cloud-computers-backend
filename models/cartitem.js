@@ -1,13 +1,34 @@
 const mongoose = require("mongoose");
 
 const cartitemSchema = new mongoose.Schema({
-  name: String,
-  price: Number,
-  quantity: Number,
-  category: String,
-  imgPath: String,
-  imgPreview: String,
-  productPreview: String,
+  name: {
+    type: String,
+    required: true,
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
+  quantity: {
+    type: Number,
+    required: true,
+  },
+  category: {
+    type: String,
+    required: true,
+  },
+  imgPath: {
+    type: String,
+    required: true,
+  },
+  imgPreview: {
+    type: String,
+    required: true,
+  },
+  productPreview: {
+    type: String,
+    required: true,
+  },
 });
 
 cartitemSchema.set("toJSON", {

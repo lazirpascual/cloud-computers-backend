@@ -7,6 +7,9 @@ GET http://localhost:3001/api/cartitems/
 GET http://localhost:3001/api/cartitems/60f747cb73c66f0015453a94
 
 ###
+GET http://localhost:3001/api/cartitems/sdfgsdfg435
+
+###
 GET http://localhost:3001/api/products/60ef5ae3254d9a2b86750a09
 
 ###

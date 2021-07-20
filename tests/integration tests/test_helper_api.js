@@ -1,6 +1,6 @@
 const CartItem = require("../../models/cartitem");
 
-const initialProducts = [
+const initialItems = [
   {
     name: "Kingston HyperX FURY DDR3",
     price: 47.53,
@@ -27,7 +27,6 @@ const initialProducts = [
     imgPath: "https://i.imgur.com/xex37JS.jpg",
     imgPreview: "https://i.imgur.com/gCuegUp.jpg",
     productPreview: "https://i.imgur.com/GGc48yD.png",
-    id: "60ef5bd59e661d2cad9c391a",
   },
   {
     name: "Lian Li PC-011 Dynamic",
@@ -62,7 +61,7 @@ const productsInDb = async () => {
 };
 
 module.exports = {
-  initialProducts,
+  initialItems,
   nonExistingId,
   productsInDb,
 };
