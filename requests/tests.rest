@@ -24,7 +24,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3001/api/cartitems/60f74b980b3faa8514b6128c
+DELETE http://localhost:3001/api/cartitems/60f74c5673c66f0015453afe
 
 ###
 PUT http://localhost:3001/api/cartitems/60efa1abe86708001554679f
