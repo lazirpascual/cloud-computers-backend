@@ -30,13 +30,13 @@ Content-Type: application/json
 DELETE http://localhost:3001/api/cartitems/60f74c5673c66f0015453afe
 
 ###
-PUT http://localhost:3001/api/cartitems/60efa1abe86708001554679f
+PUT http://localhost:3001/api/cartitems/60f77ab1435492001c03e1c8
 Content-Type: application/json
 
 {
     "name": "Fractal Design Meshify C",
     "price": 95.99,
-    "quantity": 3,
+    "quantity": 4,
     "category": "Case",
     "imgPath": "https://i.imgur.com/b3ieUZw.jpg",
     "imgPreview": "https://i.imgur.com/iOrrWY6.jpg",

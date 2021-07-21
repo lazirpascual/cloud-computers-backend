@@ -24,16 +24,20 @@ cartItemsRouter.post("/", async (request, response) => {
 });
 
 cartItemsRouter.delete("/:id", async (request, response) => {
-  const item = await CartItem.findByIdAndRemove(request.params.id);
+  await CartItem.findByIdAndRemove(request.params.id);
   response.status(204).end();
 });
 
 cartItemsRouter.put("/:id", async (request, response) => {
-  const item = new CartItem(request.body);
+  const item = request.body;
 
-  const updatedItem = CartItem.findByIdAndUpdate(request.params.id, item, {
-    new: true,
-  });
+  const updatedItem = await CartItem.findByIdAndUpdate(
+    request.params.id,
+    item,
+    {
+      new: true,
+    }
+  );
   response.json(updatedItem);
 });
 
