@@ -2,8 +2,8 @@ POST http://localhost:3001/api/login
 Content-Type: application/json
 
 {
-    "username": "zae18",
-    "password": "zae18"
+    "username": "tests",
+    "password": "tests"
 }
 
 ###
@@ -11,10 +11,25 @@ POST http://localhost:3001/api/users
 Content-Type: application/json
 
 {
-    "blogs": [],
+    "useritems": [],
     "username": "tests",
     "name": "Test",
     "password": "tests"
+}
+
+###
+POST http://localhost:3001/api/useritems
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RzIiwiaWQiOiI2MGY5ZjhkNzc0NGQxZTkzOTc2MTkwYWQiLCJpYXQiOjE2MjY5OTY4MDUsImV4cCI6MTYyNzAwMDQwNX0.wPfq2DCz1ujDhS0KU4ExeNZODwM5m7g3K3TvtvGtltI
+
+{
+    "name": "Kingston HyperX FURY DDR4 RGB",
+    "price": 62.95,
+    "quantity": 3,
+    "category": "Memory",
+    "imgPath": "https://i.imgur.com/8L0VQoc.png",
+    "imgPreview": "https://i.imgur.com/920tOW9.jpg",
+    "productPreview": "https://i.imgur.com/H2hcsGH.png"
 }
 
 ###

@@ -6,6 +6,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const productsRouter = require("./controllers/products");
 const cartItemsRouter = require("./controllers/cartitems");
+const userItemsRouter = require("./controllers/useritems");
 const loginRouter = require("./controllers/login");
 const usersRouter = require("./controllers/users");
 const middleware = require("./utils/middleware");
@@ -32,9 +33,11 @@ app.use(cors());
 app.use(express.static("build"));
 app.use(express.json());
 app.use(morgan("tiny"));
+app.use(middleware.tokenExtractor);
 
 app.use("/api/products", productsRouter);
 app.use("/api/cartitems", cartItemsRouter);
+app.use("/api/useritems", userItemsRouter);
 app.use("/api/login", loginRouter);
 app.use("/api/users", usersRouter);
 
