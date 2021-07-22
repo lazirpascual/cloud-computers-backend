@@ -48,4 +48,27 @@ userItemsRouter.post(
   }
 );
 
+userItemsRouter.delete(
+  "/:id",
+  middleware.userExtractor,
+  async (request, response) => {
+    // authenticate user before proceeding with DELETE operation
+    const user = request.user;
+    const item = await UserItem.findById(request.params.id);
+
+    if (item.user.toString() !== user.id.toString()) {
+      return response
+        .status(401)
+        .json({ error: "only users can delete from the cart" });
+    }
+
+    user.useritems = user.useritems.filter(
+      (i) => i.toString() !== item.id.toString()
+    );
+    await item.remove();
+    await user.save();
+    response.status(204).end();
+  }
+);
+
 module.exports = userItemsRouter;

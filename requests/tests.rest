@@ -2,8 +2,8 @@ POST http://localhost:3001/api/login
 Content-Type: application/json
 
 {
-    "username": "tests",
-    "password": "tests"
+    "username": "zae18",
+    "password": "zae18"
 }
 
 ###
@@ -20,17 +20,21 @@ Content-Type: application/json
 ###
 POST http://localhost:3001/api/useritems
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RzIiwiaWQiOiI2MGY5ZjhkNzc0NGQxZTkzOTc2MTkwYWQiLCJpYXQiOjE2MjY5OTY4MDUsImV4cCI6MTYyNzAwMDQwNX0.wPfq2DCz1ujDhS0KU4ExeNZODwM5m7g3K3TvtvGtltI
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InphZTE4IiwiaWQiOiI2MGY5ZjhiMDc0NGQxZTkzOTc2MTkwYTgiLCJpYXQiOjE2MjY5OTc0MDYsImV4cCI6MTYyNzAwMTAwNn0.0hiWPCNnq08PLS8ZevxzLQ5GKfgJJkoI-pLx7qF9638
 
 {
     "name": "Kingston HyperX FURY DDR4 RGB",
     "price": 62.95,
-    "quantity": 3,
+    "quantity": 1,
     "category": "Memory",
     "imgPath": "https://i.imgur.com/8L0VQoc.png",
     "imgPreview": "https://i.imgur.com/920tOW9.jpg",
     "productPreview": "https://i.imgur.com/H2hcsGH.png"
 }
+
+### 
+Delete http://localhost:3001/api/useritems/60fa04dc9cde9a9e990824df
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InphZTE4IiwiaWQiOiI2MGY5ZjhiMDc0NGQxZTkzOTc2MTkwYTgiLCJpYXQiOjE2MjY5OTc0MDYsImV4cCI6MTYyNzAwMTAwNn0.0hiWPCNnq08PLS8ZevxzLQ5GKfgJJkoI-pLx7qF9638
 
 ###
 GET http://localhost:3001/api/products/
