@@ -48,6 +48,32 @@ userItemsRouter.post(
   }
 );
 
+userItemsRouter.put(
+  "/:id",
+  middleware.userExtractor,
+  async (request, response) => {
+    const body = request.body;
+
+    const item = {
+      name: body.name,
+      price: body.price,
+      quantity: body.quantity,
+      category: body.category,
+      imgPath: body.imgPath,
+      imgPreview: body.imgPreview,
+      productPreview: body.productPreview,
+    };
+
+    const updatedItem = await UserItem.findByIdAndUpdate(
+      request.params.id,
+      item,
+      { new: true }
+    );
+
+    response.json(updatedItem);
+  }
+);
+
 userItemsRouter.delete(
   "/:id",
   middleware.userExtractor,

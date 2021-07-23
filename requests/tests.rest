@@ -82,4 +82,18 @@ Content-Type: application/json
     "productPreview": "https://i.imgur.com/x4CmFCt.png"
 }
 
+###
+PUT http://localhost:3001/api/useritems/60fa016bea4e869c3b1b7f83
+Content-Type: application/json
+
+{
+    "name": "Fractal Design Meshify C",
+    "price": 95.99,
+    "quantity": 1,
+    "category": "Case",
+    "imgPath": "https://i.imgur.com/b3ieUZw.jpg",
+    "imgPreview": "https://i.imgur.com/iOrrWY6.jpg",
+    "productPreview": "https://i.imgur.com/x4CmFCt.png"
+}
+
 
