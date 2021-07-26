@@ -17,6 +17,12 @@ const userSchema = mongoose.Schema({
       ref: "Useritem",
     },
   ],
+  reviews: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Review",
+    },
+  ],
 });
 
 userSchema.plugin(uniqueValidator);

@@ -18,6 +18,19 @@ Content-Type: application/json
 }
 
 ###
+POST http://localhost:3001/api/reviews
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InphZTE4IiwiaWQiOiI2MGZmMGU0YmZmZGMwYzIyZTdiNGQ1OTgiLCJpYXQiOjE2MjczMjgwOTEsImV4cCI6MTYyNzMzMTY5MX0.Vj-3eh9zYQ1nsJP19NUHL8oImWgmVXPG6fHpX3PA4co
+
+{
+    "rating": 5,
+    "title": "Beast of a CPU",
+    "comment": "One of the best CPUs I've bought in over a decade",
+    "recommend": true,
+    "productId": "60ef5ae3254d9a2b86750a09"
+}
+
+###
 POST http://localhost:3001/api/useritems
 Content-Type: application/json
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InphZTE4IiwiaWQiOiI2MGY5ZjhiMDc0NGQxZTkzOTc2MTkwYTgiLCJpYXQiOjE2MjY5OTc0MDYsImV4cCI6MTYyNzAwMTAwNn0.0hiWPCNnq08PLS8ZevxzLQ5GKfgJJkoI-pLx7qF9638

@@ -9,6 +9,7 @@ const cartItemsRouter = require("./controllers/cartitems");
 const userItemsRouter = require("./controllers/useritems");
 const loginRouter = require("./controllers/login");
 const usersRouter = require("./controllers/users");
+const reviewsRouter = require("./controllers/reviews");
 const middleware = require("./utils/middleware");
 const logger = require("./utils/logger");
 const mongoose = require("mongoose");
@@ -40,6 +41,7 @@ app.use("/api/cartitems", cartItemsRouter);
 app.use("/api/useritems", userItemsRouter);
 app.use("/api/login", loginRouter);
 app.use("/api/users", usersRouter);
+app.use("/api/reviews", reviewsRouter);
 
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);
