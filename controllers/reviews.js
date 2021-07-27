@@ -1,6 +1,5 @@
 const reviewRouter = require("express").Router();
 const Review = require("../models/review");
-const User = require("../models/user");
 const middleware = require("../utils/middleware");
 
 reviewRouter.get("/", async (request, response) => {
@@ -9,6 +8,16 @@ reviewRouter.get("/", async (request, response) => {
     name: 1,
   });
   response.json(items);
+});
+
+reviewRouter.get("/:id", async (request, response) => {
+  const review = await Review.findById(request.params.id);
+
+  if (review) {
+    response.json(review);
+  } else {
+    response.status(404).end();
+  }
 });
 
 reviewRouter.post("/", middleware.userExtractor, async (request, response) => {
@@ -32,5 +41,28 @@ reviewRouter.post("/", middleware.userExtractor, async (request, response) => {
 
   response.status(201).json(savedReview);
 });
+
+reviewRouter.delete(
+  "/:id",
+  middleware.userExtractor,
+  async (request, response) => {
+    // authenticate user before proceeding with DELETE operation
+    const user = request.user;
+    const review = await Review.findById(request.params.id);
+
+    if (review.user.toString() !== user.id.toString()) {
+      return response
+        .status(401)
+        .json({ error: "Only owner of this review has permission to delete." });
+    }
+
+    user.reviews = user.reviews.filter(
+      (r) => r.toString() !== review.id.toString()
+    );
+    await review.remove();
+    await user.save();
+    response.status(204).end();
+  }
+);
 
 module.exports = reviewRouter;

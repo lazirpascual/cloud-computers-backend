@@ -17,6 +17,10 @@ Content-Type: application/json
     "password": "pascual"
 }
 
+### 
+Delete http://localhost:3001/api/reviews/60ff797409ca545bdd800709
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InphZTE4IiwiaWQiOiI2MGZmMGU0YmZmZGMwYzIyZTdiNGQ1OTgiLCJpYXQiOjE2MjczNTc3NjcsImV4cCI6MTYyNzM2MTM2N30.jRZ65zyAP57_50xt8AFMabBBa8N1f7XOi62jcqptFLk
+
 ###
 POST http://localhost:3001/api/reviews
 Content-Type: application/json

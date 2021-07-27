@@ -1,6 +1,5 @@
 const userItemsRouter = require("express").Router();
 const UserItem = require("../models/useritem");
-const User = require("../models/user");
 const middleware = require("../utils/middleware");
 
 userItemsRouter.get("/", async (request, response) => {
