@@ -21,6 +21,7 @@ const reviewSchema = mongoose.Schema({
     ref: "User",
   },
   productId: String,
+  date: String,
 });
 
 reviewSchema.plugin(uniqueValidator);

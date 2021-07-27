@@ -22,6 +22,7 @@ reviewRouter.post("/", middleware.userExtractor, async (request, response) => {
     comment: body.comment,
     recommend: body.recommend,
     productId: body.productId,
+    date: body.date,
     user: user._id,
   });
 
