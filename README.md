@@ -1,15 +1,15 @@
-# Shopping-Website-Backend
+# Cloud-Computers-Backend
 
-Backend for the Shopping Website.
+Backend for Cloud Computers.
 
-# Technologies
+## 🛠 Tech Stack
 
 - Node JS
 - Express
 - MongoDB
   - Mongoose
 
-# Data
+## 🔗 Database
 
 Uses REST API that holds products, cart, user, and reviews data. Stored in a MongoDB database.
 
