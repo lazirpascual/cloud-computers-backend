@@ -1,4 +1,4 @@
-/* create cartitem table*/
+/* create cartitems table*/
 CREATE TABLE cartitems(
     id SERIAL PRIMARY KEY, 
     name VARCHAR(100),
