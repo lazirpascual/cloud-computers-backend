@@ -19,3 +19,8 @@ VALUES (
     '60ef5ae3254d9a2b86750a09', 
     '2021-07-27'
 );
+
+/* add reference to user */
+ALTER TABLE reviews
+ADD COLUMN userId INT,
+ADD FOREIGN KEY (userId) REFERENCES users(id);

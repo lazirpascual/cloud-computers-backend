@@ -15,3 +15,13 @@ VALUES (
     'Pascual',
     '$2b$10$uTv9ku73LrVzrjpLwBAYxOK4jAjC1abIbE/gqwO8Ydyz6QOZc6Ama'
 );
+
+/* add reference to reviews */
+ALTER TABLE users
+ADD COLUMN reviewId INT,
+ADD FOREIGN KEY (reviewId) REFERENCES reviews(id);
+
+/* add reference to useritems */
+ALTER TABLE users
+ADD COLUMN useritemsId INT,
+ADD FOREIGN KEY (useritemsId) REFERENCES useritems(id);

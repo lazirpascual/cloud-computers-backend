@@ -21,3 +21,8 @@ VALUES (
     'https://i.imgur.com/iOrrWY6.jpg', 
     'https://i.imgur.com/x4CmFCt.png'
 );
+
+/* add reference to users */
+ALTER TABLE useritems
+ADD COLUMN userId INT,
+ADD FOREIGN KEY (userId) REFERENCES users(id);
