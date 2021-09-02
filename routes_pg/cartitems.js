@@ -32,13 +32,13 @@ cartItemsRouter.post("/", async (req, res) => {
       price,
       quantity,
       category,
-      imgPath,
-      imgPreview,
-      productPreview,
+      imgpath,
+      imgpreview,
+      productpreview,
     } = req.body;
     const newCartItem = await pool.query(
-      "INSERT INTO cartitems (name, price, quantity, category, imgPath, imgPreview, productPreview) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
-      [name, price, quantity, category, imgPath, imgPreview, productPreview]
+      "INSERT INTO cartitems (name, price, quantity, category, imgpath, imgpreview, productpreview) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
+      [name, price, quantity, category, imgpath, imgpreview, productpreview]
     );
     res.status(200).json(newCartItem.rows[0]);
   } catch (error) {

@@ -13,11 +13,11 @@ CREATE TABLE cartitems(
 /* add data to table */
 INSERT INTO cartitems (name, price, quantity, category, imgPath, imgPreview, productPreview)
 VALUES (
-    'Fractal Design Meshify C', 
-    95.99, 
+    'AMD Ryzen 5 5800X', 
+    499.99, 
     1, 
-    'Case', 
-    'https://i.imgur.com/b3ieUZw.jpg', 
-    'https://i.imgur.com/iOrrWY6.jpg', 
-    'https://i.imgur.com/x4CmFCt.png'
+    'Processors', 
+    'https://i.imgur.com/xuuS84t.png', 
+    'https://i.imgur.com/m4Bppno.jpg', 
+    'https://i.imgur.com/0szXExr.png'
 );
