@@ -24,5 +24,5 @@ VALUES (
 
 /* add reference to users */
 ALTER TABLE useritems
-ADD COLUMN userId INT,
-ADD FOREIGN KEY (userId) REFERENCES users(id);
+ADD COLUMN username TEXT,
+ADD FOREIGN KEY (username) REFERENCES users(username);
