@@ -6,11 +6,10 @@ const cors = require("cors");
 const morgan = require("morgan");
 const cartItemsRouter = require("./routes_pg/cartitems");
 const productsRouter = require("./routes_pg/products");
-const productsRouterMD = require("./routes/products");
+const reviewsRouter = require("./routes_pg/reviews");
 const userItemsRouter = require("./routes/useritems");
 const loginRouter = require("./routes/login");
 const usersRouter = require("./routes/users");
-const reviewsRouter = require("./routes/reviews");
 const middleware = require("./utils/middleware");
 const logger = require("./utils/logger");
 const mongoose = require("mongoose");
@@ -39,11 +38,10 @@ app.use(middleware.tokenExtractor);
 
 app.use("/api/cartitems", cartItemsRouter);
 app.use("/api/products", productsRouter);
-app.use("/api/productsm", productsRouterMD);
+app.use("/api/reviews", reviewsRouter);
 app.use("/api/useritems", userItemsRouter);
 app.use("/api/login", loginRouter);
 app.use("/api/users", usersRouter);
-app.use("/api/reviews", reviewsRouter);
 
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);

@@ -27,18 +27,10 @@ cartItemsRouter.get("/:id", async (req, res) => {
 // create a cartitem
 cartItemsRouter.post("/", async (req, res) => {
   try {
-    const {
-      name,
-      price,
-      quantity,
-      category,
-      imgpath,
-      imgpreview,
-      productpreview,
-    } = req.body;
+    const { name, price, quantity, category, productpreview } = req.body;
     const newCartItem = await pool.query(
-      "INSERT INTO cartitems (name, price, quantity, category, imgpath, imgpreview, productpreview) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
-      [name, price, quantity, category, imgpath, imgpreview, productpreview]
+      "INSERT INTO cartitems (name, price, quantity, category, productpreview) VALUES($1, $2, $3, $4, $5) RETURNING *",
+      [name, price, quantity, category, productpreview]
     );
     res.status(200).json(newCartItem.rows[0]);
   } catch (error) {
@@ -61,18 +53,10 @@ cartItemsRouter.delete("/:id", async (req, res) => {
 cartItemsRouter.put("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const {
-      name,
-      price,
-      quantity,
-      category,
-      imgPath,
-      imgPreview,
-      productPreview,
-    } = req.body;
+    const { name, price, quantity, category, productpreview } = req.body;
     const updatedCartItem = await pool.query(
-      "UPDATE cartitems SET name = ($1), price = ($2), quantity = ($3), category = ($4), imgPath = ($5), imgPreview = ($6), productPreview = ($7) WHERE id = $8 RETURNING *",
-      [name, price, quantity, category, imgPath, imgPreview, productPreview, id]
+      "UPDATE cartitems SET name = ($1), price = ($2), quantity = ($3), category = ($4), productPreview = ($5) WHERE id = $6 RETURNING *",
+      [name, price, quantity, category, productpreview, id]
     );
     res.status(200).json(updatedCartItem.rows[0]);
   } catch (error) {

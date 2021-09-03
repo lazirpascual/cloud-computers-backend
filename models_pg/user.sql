@@ -18,8 +18,7 @@ VALUES (
 
 /* add reference to reviews */
 ALTER TABLE users
-ADD COLUMN reviewId INT,
-ADD FOREIGN KEY (reviewId) REFERENCES reviews(id);
+ADD COLUMN reviews integer[];
 
 /* add reference to useritems */
 ALTER TABLE users
