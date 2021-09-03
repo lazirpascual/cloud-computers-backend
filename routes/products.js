@@ -1,18 +1,26 @@
 const productsRouter = require("express").Router();
-const Product = require("../models/product");
+const pool = require("../db");
 
-productsRouter.get("/", async (request, response) => {
-  const products = await Product.find({});
-  response.json(products);
+// get all products
+productsRouter.get("/", async (req, res) => {
+  try {
+    const allProducts = await pool.query("SELECT * FROM products");
+    res.json(allProducts.rows);
+  } catch (error) {
+    console.log(error.message);
+  }
 });
 
-productsRouter.get("/:id", async (request, response) => {
-  const product = await Product.findById(request.params.id);
-
-  if (product) {
-    response.json(product);
-  } else {
-    response.status(404).end();
+// get a specific product
+productsRouter.get("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const product = await pool.query("SELECT * FROM products WHERE id = $1", [
+      id,
+    ]);
+    res.status(200).json(product.rows[0]);
+  } catch (error) {
+    console.log(error.message);
   }
 });
 

@@ -4,31 +4,13 @@ require("express-async-errors");
 const app = express();
 const cors = require("cors");
 const morgan = require("morgan");
-const cartItemsRouter = require("./routes_pg/cartitems");
-const productsRouter = require("./routes_pg/products");
-const reviewsRouter = require("./routes_pg/reviews");
-const usersRouter = require("./routes_pg/users");
-const loginRouter = require("./routes_pg/login");
-const userItemsRouter = require("./routes_pg/useritems");
+const cartItemsRouter = require("./routes/cartitems");
+const productsRouter = require("./routes/products");
+const reviewsRouter = require("./routes/reviews");
+const usersRouter = require("./routes/users");
+const loginRouter = require("./routes/login");
+const userItemsRouter = require("./routes/useritems");
 const middleware = require("./utils/middleware");
-const logger = require("./utils/logger");
-const mongoose = require("mongoose");
-
-logger.info("connecting to", config.MONGODB_URI);
-
-mongoose
-  .connect(config.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-    useCreateIndex: true,
-  })
-  .then(() => {
-    logger.info("connected to MongoDB");
-  })
-  .catch((error) => {
-    logger.error("error connecting to MongoDB:", error.message);
-  });
 
 app.use(cors());
 app.use(express.static("build"));

@@ -1,44 +1,67 @@
 const cartItemsRouter = require("express").Router();
-const CartItem = require("../models/cartitem");
+const pool = require("../db");
 
-cartItemsRouter.get("/", async (request, response) => {
-  const items = await CartItem.find({});
-  response.json(items);
-});
-
-cartItemsRouter.get("/:id", async (request, response) => {
-  const item = await CartItem.findById(request.params.id);
-
-  if (item) {
-    response.json(item);
-  } else {
-    response.status(404).end();
+// get all cartitems
+cartItemsRouter.get("/", async (req, res) => {
+  try {
+    const allTodos = await pool.query("SELECT * FROM cartitems");
+    res.json(allTodos.rows);
+  } catch (error) {
+    console.log(error.message);
   }
 });
 
-cartItemsRouter.post("/", async (request, response) => {
-  const item = new CartItem(request.body);
-
-  const items = await item.save();
-  response.json(items);
+// get a specific cartitem
+cartItemsRouter.get("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const todo = await pool.query("SELECT * FROM cartitems WHERE id = $1", [
+      id,
+    ]);
+    res.status(200).json(todo.rows[0]);
+  } catch (error) {
+    console.log(error.message);
+  }
 });
 
-cartItemsRouter.delete("/:id", async (request, response) => {
-  await CartItem.findByIdAndRemove(request.params.id);
-  response.status(204).end();
+// create a cartitem
+cartItemsRouter.post("/", async (req, res) => {
+  try {
+    const { name, price, quantity, category, productpreview } = req.body;
+    const newCartItem = await pool.query(
+      "INSERT INTO cartitems (name, price, quantity, category, productpreview) VALUES($1, $2, $3, $4, $5) RETURNING *",
+      [name, price, quantity, category, productpreview]
+    );
+    res.status(200).json(newCartItem.rows[0]);
+  } catch (error) {
+    console.log(error.message);
+  }
 });
 
-cartItemsRouter.put("/:id", async (request, response) => {
-  const item = request.body;
+// delete a cartitem
+cartItemsRouter.delete("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    await pool.query("DELETE FROM cartitems WHERE id = $1", [id]);
+    res.status(200).json("Item was deleted!");
+  } catch (error) {
+    console.log(error.message);
+  }
+});
 
-  const updatedItem = await CartItem.findByIdAndUpdate(
-    request.params.id,
-    item,
-    {
-      new: true,
-    }
-  );
-  response.json(updatedItem);
+// update a cartitem
+cartItemsRouter.put("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, price, quantity, category, productpreview } = req.body;
+    const updatedCartItem = await pool.query(
+      "UPDATE cartitems SET name = ($1), price = ($2), quantity = ($3), category = ($4), productPreview = ($5) WHERE id = $6 RETURNING *",
+      [name, price, quantity, category, productpreview, id]
+    );
+    res.status(200).json(updatedCartItem.rows[0]);
+  } catch (error) {
+    console.log(error.message);
+  }
 });
 
 module.exports = cartItemsRouter;

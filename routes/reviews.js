@@ -1,68 +1,41 @@
 const reviewRouter = require("express").Router();
-const Review = require("../models/review");
 const middleware = require("../utils/middleware");
+const pool = require("../db");
 
-reviewRouter.get("/", async (request, response) => {
-  const items = await Review.find({}).populate("user", {
-    username: 1,
-    name: 1,
-  });
-  response.json(items);
-});
-
-reviewRouter.get("/:id", async (request, response) => {
-  const review = await Review.findById(request.params.id);
-
-  if (review) {
-    response.json(review);
-  } else {
-    response.status(404).end();
+// get all reviews
+reviewRouter.get("/", async (req, res) => {
+  try {
+    const allReviews = await pool.query("SELECT * FROM reviews");
+    res.json(allReviews.rows);
+  } catch (error) {
+    console.log(error.message);
   }
 });
 
-reviewRouter.post("/", middleware.userExtractor, async (request, response) => {
-  const body = request.body;
-  // authenticate user before proceeding with POST operation
-  const user = request.user;
-
-  const review = new Review({
-    rating: body.rating,
-    title: body.title,
-    comment: body.comment,
-    recommend: body.recommend,
-    productId: body.productId,
-    date: body.date,
-    user: user._id,
-  });
-
-  const savedReview = await review.save();
-  user.reviews = user.reviews.concat(savedReview._id);
-  await user.save();
-
-  response.status(201).json(savedReview);
-});
-
-reviewRouter.delete(
-  "/:id",
-  middleware.userExtractor,
-  async (request, response) => {
-    // authenticate user before proceeding with DELETE operation
-    const user = request.user;
-    const review = await Review.findById(request.params.id);
-
-    if (review.user.toString() !== user.id.toString()) {
-      return response
-        .status(401)
-        .json({ error: "Only owner of this review has permission to delete." });
-    }
-
-    user.reviews = user.reviews.filter(
-      (r) => r.toString() !== review.id.toString()
+// create a review
+reviewRouter.post("/", middleware.userExtractor, async (req, res) => {
+  try {
+    const userid = req.user.id;
+    const { rating, title, comment, recommend, productId, date } = req.body;
+    const newReview = await pool.query(
+      "INSERT INTO reviews (rating, title, comment, recommend, productid, date, username) VALUES($1, $2, $3, $4, $5, $6, (SELECT username FROM users WHERE id = $7)) RETURNING *",
+      [rating, title, comment, recommend, productId, date, userid]
     );
-    await review.remove();
-    await user.save();
-    response.status(204).end();
+    res.status(200).json(newReview.rows[0]);
+  } catch (error) {
+    console.log(error.message);
   }
-);
+});
+
+// delete a review
+reviewRouter.delete("/:id", middleware.userExtractor, async (req, res) => {
+  try {
+    const { id } = req.params;
+    await pool.query("DELETE FROM reviews WHERE id = $1", [id]);
+    res.status(200).json("Review was deleted!");
+  } catch (error) {
+    console.log(error.message);
+  }
+});
 
 module.exports = reviewRouter;

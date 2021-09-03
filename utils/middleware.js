@@ -1,6 +1,5 @@
 const logger = require("./logger");
 const jwt = require("jsonwebtoken");
-const User = require("../models/user");
 const pool = require("../db");
 
 const unknownEndpoint = (request, response) => {
