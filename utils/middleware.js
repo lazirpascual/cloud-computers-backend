@@ -1,6 +1,7 @@
 const logger = require("./logger");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
+const pool = require("../db");
 
 const unknownEndpoint = (request, response) => {
   response.status(404).send({ error: "unknown endpoint" });
@@ -44,7 +45,10 @@ const userExtractor = async (request, response, next) => {
   if (!request.token || !decodedToken.id) {
     return response.status(401).json({ error: "token missing or invalid" });
   }
-  request.user = await User.findById(decodedToken.id);
+  const user = await pool.query("SELECT * FROM users where id = $1", [
+    decodedToken.id,
+  ]);
+  request.user = user.rows[0];
 
   next();
 };
