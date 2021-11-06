@@ -10,7 +10,7 @@ Backend for Cloud Computers.
 
 ## 🔗 Database
 
-![preview](https://i.imgur.com/9ZTD2S9.png)
+![preview](https://i.imgur.com/hn6qh8B.png)
 
 Uses REST API that serves products, cart, user, and reviews data to the frontend. Stored in a PostgreSQL database.
 
